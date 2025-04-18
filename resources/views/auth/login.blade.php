@@ -12,7 +12,7 @@
                             <img src="{{ asset('assets/images/Logo_blanco-1200px.png') }}" alt="" height="150">
                         </a>
                     </div>
-                    <p class="mt-3 fs-15 fw-medium">Sistema de Reservas</p>
+                    <p class="mt-3 fs-15 fw-medium">Curso de Sistema de Reservas - AnderCode</p>
                 </div>
             </div>
         </div>

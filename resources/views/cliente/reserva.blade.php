@@ -37,14 +37,14 @@
 
                     <div class="col-xxl-3 col-md-6">
                         <div>
-                            <label for="consultant_id" class="form-label">{{ __('Consultor') }}</label>
-                            <select class="form-select @error('consultant_id') is-invalid @enderror" id="consultant_id" name="consultant_id" required>
+                            <label for="consulta_id" class="form-label">{{ __('Consultor') }}</label>
+                            <select class="form-select @error('consulta_id') is-invalid @enderror" id="consulta_id" name="consulta_id" required>
                                 <option value="">Seleccionar Consultor</option>
                                 @foreach ($consultants as $consultant )
                                     <option value="{{ $consultant->id }}">{{ $consultant->nombres }} {{ $consultant->apellidos }}</option>
                                 @endforeach
                             </select>
-                            @error('consultant_id')
+                            @error('consulta_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message}}</strong>
                                 </span>
@@ -179,7 +179,7 @@
         paypal.Buttons({
             // Método que se ejecuta cuando se crea una orden de pago
             createOrder: function(data, actions) {
-                var consultantId = document.getElementById('consultant_id').value;
+                var consultantId = document.getElementById('consulta_id').value;
                 var reservationDate = document.getElementById('reservation_date').value;
                 var startTime = document.getElementById('start_time').value;
                 var totalAmount = document.getElementById('total_amount').value;
@@ -217,7 +217,7 @@
                             orderID: data.orderID, // ID de la orden de PayPal
                             details: details, // Detalles del pago de PayPal
                             user_id: {{ auth()->user()->id }}, // ID del usuario autenticado
-                            consultant_id: document.getElementById('consultant_id').value, // ID del consultor
+                            consulta_id: document.getElementById('consulta_id').value, // ID del consultor
                             reservation_date: document.getElementById('reservation_date').value, // Fecha de la reserva
                             start_time: document.getElementById('start_time').value, // Hora de inicio de la reserva
                             end_time: document.getElementById('end_time').value, // Hora de fin de la reserva

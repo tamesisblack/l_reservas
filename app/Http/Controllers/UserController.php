@@ -34,7 +34,7 @@ class UserController extends Controller
         $request->validate([
             'nombres' => 'required|string|max:255', // Nombres requeridos
             'apellidos' => 'required|string|max:255', // Apellidos requeridos
-            'teléfono' => 'required|string|max:15', // Teléfono requerido
+            'telefono' => 'required|string|max:15', // Teléfono requerido
             'email' => 'required|string|email|max:255|unique:users', // Email único requerido
             'rol_id' => 'required|integer', // Rol requerido
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Foto opcional
@@ -50,7 +50,7 @@ class UserController extends Controller
         User::create([
             'nombres' => $request->nombres,
             'apellidos' => $request->apellidos,
-            'teléfono' => $request->teléfono,
+            'telefono' => $request->telefono,
             'email' => $request->email,
             'rol_id' => $request->rol_id,
             'password' => Hash::make('password'), // Se establece una contraseña predeterminada
@@ -79,7 +79,7 @@ class UserController extends Controller
         $request->validate([
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'teléfono' => 'required|string|max:15',
+            'telefono' => 'required|string|max:15',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id, // Permite el mismo email para el usuario actual
             'rol_id' => 'required|integer',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
@@ -98,7 +98,7 @@ class UserController extends Controller
         $usuario->update([
             'nombres' => $request->nombres,
             'apellidos' => $request->apellidos,
-            'teléfono' => $request->teléfono,
+            'telefono' => $request->telefono,
             'email' => $request->email,
             'rol_id' => $request->rol_id,
         ]);

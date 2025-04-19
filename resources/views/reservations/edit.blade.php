@@ -47,14 +47,14 @@
 
                     <div class="col-xxl-3 col-md-6">
                         <div>
-                            <label for="consultant_id" class="form-label">{{ __('Consultor') }}</label>
-                            <select class="form-select @error('consultant_id') is-invalid @enderror" id="consultant_id" name="consultant_id" required>
+                            <label for="consulta_id" class="form-label">{{ __('Consultor') }}</label>
+                            <select class="form-select @error('consulta_id') is-invalid @enderror" id="consulta_id" name="consulta_id" required>
                                 <option value="">Seleccionar Consultor</option>
                                 @foreach ($consultants as $consultant )
-                                    <option value="{{ $consultant->id }}" {{ $consultant->id == $reservation->consultant_id ? 'selected' : '' }}>{{ $consultant->nombres }} {{ $consultant->apellidos }}</option>
+                                    <option value="{{ $consultant->id }}" {{ $consultant->id == $reservation->consulta_id ? 'selected' : '' }}>{{ $consultant->nombres }} {{ $consultant->apellidos }}</option>
                                 @endforeach
                             </select>
-                            @error('consultant_id')
+                            @error('consulta_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message}}</strong>
                                 </span>

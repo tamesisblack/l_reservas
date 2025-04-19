@@ -53,7 +53,7 @@ class ReservationController extends Controller{
         // Validación de los datos recibidos
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'consultant_id' => 'required|exists:users,id',
+            'consulta_id' => 'required|exists:users,id',
             'reservation_date' => 'required|date',
             'start_time' => 'required|date_format:H:i|after_or_equal:09:00|before_or_equal:15:00',
             'end_time' => 'required|date_format:H:i|before_or_equal:15:00',
@@ -65,7 +65,7 @@ class ReservationController extends Controller{
         // Creación de la reserva
         $reservation = Reservation::create([
             'user_id' => $request->user_id,
-            'consultant_id' => $request->consultant_id,
+            'consulta_id' => $request->consulta_id,
             'reservation_date' => $request->reservation_date,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
@@ -75,14 +75,14 @@ class ReservationController extends Controller{
         ]);
 
         // Envío de correo de confirmación
-        $this->sendConfirmationEmail($reservation);
+        // $this->sendConfirmationEmail($reservation);
 
-        // Envío de mensaje de WhatsApp si el usuario tiene teléfono
-        $user = User::find($request->user_id);
-        $userPhone = $user->teléfono;
-        if ($userPhone) {
-            $this->sendWhastsAppMessage($userPhone, $this->generateWhatsAppMessage($reservation, $user));
-        }
+        // // Envío de mensaje de WhatsApp si el usuario tiene teléfono
+        // $user = User::find($request->user_id);
+        // $userPhone = $user->teléfono;
+        // if ($userPhone) {
+        //     $this->sendWhastsAppMessage($userPhone, $this->generateWhatsAppMessage($reservation, $user));
+        // }
 
         return redirect()->route('reservations.index')->with('success', 'Reserva creada correctamente');
     }
@@ -105,7 +105,7 @@ class ReservationController extends Controller{
         // Validación de los datos recibidos
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'consultant_id' => 'required|exists:users,id',
+            'consulta_id' => 'required|exists:users,id',
             'reservation_date' => 'required|date',
             'start_time' => 'required|date_format:H:i|after_or_equal:09:00|before_or_equal:15:00',
             'end_time' => 'required|date_format:H:i|before_or_equal:15:00',
@@ -198,7 +198,7 @@ class ReservationController extends Controller{
 
         $consultantId = Auth::user()->id;
 
-        $reservations = Reservation::where('consultant_id',$consultantId)->get();
+        $reservations = Reservation::where('consulta_id',$consultantId)->get();
 
         $events = [];
         foreach($reservations as $reservation){
@@ -263,7 +263,7 @@ class ReservationController extends Controller{
             'orderID' =>'required',
             'details' => 'required',
             'user_id' => 'required|exists:users,id',
-            'consultant_id' => 'required|exists:users,id',
+            'consulta_id' => 'required|exists:users,id',
             'reservation_date' => 'required|date',
             'start_time' => 'required|date_format:H:i|after_or_equal:09:00|before_or_equal:15:00',
             'end_time' => 'required|date_format:H:i|before_or_equal:15:00',
@@ -277,7 +277,7 @@ class ReservationController extends Controller{
 
             $reservation = Reservation::create([
                 'user_id' => $request -> user_id,
-                'consultant_id' => $request -> consultant_id,
+                'consulta_id' => $request -> consulta_id,
                 'reservation_date' => $request -> reservation_date,
                 'start_time' => $request -> start_time,
                 'end_time' => $request -> end_time,
@@ -318,7 +318,7 @@ class ReservationController extends Controller{
     // Método para enviar el correo de confirmación de la reserva
     public function sendConfirmationEmail($reservation){
         $user = User::find($reservation->user_id);
-        $consultant = User::find($reservation->consultant_id);
+        $consultant = User::find($reservation->consulta_id);
 
         $mail = new PHPMailer(true);
 

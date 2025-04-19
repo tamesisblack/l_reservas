@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
-   
+    protected $table = 'reservations';
     protected $fillable = [
         'user_id',
         'consulta_id',
@@ -28,10 +28,10 @@ class Reservation extends Model
         return $this->belongsTo(User::class,'user_id');
     }
 
-    public function consulta()
+    public function consultant()
     {
         return $this->belongsTo(User::class,'consulta_id');
-    }   
+    }
 
-    
+
 }

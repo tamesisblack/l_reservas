@@ -44,7 +44,7 @@
                             <td>{{ $usuario->nombres }}</td>
                             <td>{{ $usuario->apellidos }}</td>
                             <td>{{ $usuario->email }}</td>
-                            <td>{{ $usuario->teléfono }}</td>
+                            <td>{{ $usuario->telefono }}</td>
                             <td>{{ $usuario->role->name }}</td>
                             <td>
                                 <a href="{{ route('usuarios.edit',$usuario->id) }}" class="btn btn-warning btn-sm">Editar</a>

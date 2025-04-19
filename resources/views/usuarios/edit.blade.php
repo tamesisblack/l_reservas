@@ -53,9 +53,9 @@
 
                     <div class="col-xxl-3 col-md-6">
                         <div>
-                            <label for="teléfono" class="form-label">{{ __('Teléfono') }}</label>
-                            <input type="text" class="form-control @error('teléfono') is-invalid @enderror" id="teléfono" name="teléfono" value="{{ old('teléfono',$usuario->teléfono) }}" required>
-                            @error('teléfono')
+                            <label for="telefono" class="form-label">{{ __('Teléfono') }}</label>
+                            <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono',$usuario->telefono) }}" required>
+                            @error('telefono')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message}}</strong>
                                 </span>
